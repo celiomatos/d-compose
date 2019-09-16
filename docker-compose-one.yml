@@ -38,83 +38,16 @@ services:
       - '5432:5432'
     volumes:
       - d_data:/var/lib/postgresql/data
-  d-server-eureka:
-    build: docker-files/docker_eureka
-    container_name: d-server-eureka
+  d-server-one:
+    build: docker-files/docker_one
+    container_name: d-server-one
     restart: always
     ports:
-      - '8088:8088'
-    networks:
-      - d_network
-  d-server-admin:
-    build: docker-files/docker_admin
-    container_name: d-server-admin
-    restart: always
-    ports:
-      - '8087:8087'
-    networks:
-      - d_network
-  d-server-auth:
-    build: docker-files/docker_auth
-    container_name: d-server-auth
-    restart: always
+      - '9090:9090'
     networks:
       - d_network
     depends_on:
       - 'd-server-db'
-  d-server-scraper:
-    build: docker-files/docker_scraper
-    container_name: d-server-scraper
-    restart: always
-    networks:
-      - d_network
-    depends_on:
-      - 'd-server-db'
-  d-server-main:
-    build: docker-files/docker_main
-    container_name: d-server-main
-    restart: always
-    networks:
-      - d_network
-    depends_on:
-      - 'd-server-db'
-  d-server-mail:
-    build: docker-files/docker_mail
-    container_name: d-server-mail
-    restart: always
-    networks:
-      - d_network
-    depends_on:
-      - 'd-server-db'      
-  d-server-schedule:
-    build: docker-files/docker_schedule
-    container_name: d-server-schedule
-    restart: always
-    networks:
-      - d_network
-    depends_on:
-      - 'd-server-db'
-      - 'd-server-scraper'
-  d-server-gateway:
-    build: docker-files/docker_gateway
-    container_name: d-server-gateway
-    restart: always
-    networks:
-      - d_network
-    depends_on:
-      - 'd-server-auth'
-  d-server-zuul:
-    build: docker-files/docker_zuul
-    container_name: d-server-zuul
-    restart: always
-    ports:
-      - '8089:8089'
-    networks:
-      - d_network
-    depends_on:
-      - 'd-server-eureka'
-      - 'd-server-auth'
-      - 'd-server-gateway'
   d-server-front:
     build: docker-files/d-front
     container_name: d-server-front
@@ -124,7 +57,7 @@ services:
     networks:
       - d_network
     depends_on:
-      - 'd-server-zuul'
+      - 'd-server-one'
 volumes:
   d_data:
   d_vol:
