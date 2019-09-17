@@ -13,15 +13,9 @@ services:
       - d_vol:/data
       - d_vol:/root/.minio
     command: server /data  
-  d-cron-alert:
-    build: docker-files/docker_cron_alert
-    container_name: d-cron-alert
-    restart: always
-    volumes:
-      - d_vol:/app/capturas
-  d-cron-pagamento:
-    build: docker-files/docker_cron_pagamento
-    container_name: d-cron-pagamento
+  d-cron:
+    build: docker-files-one/docker_cron
+    container_name: d-cron
     restart: always
     volumes:
       - d_vol:/app/capturas
@@ -43,7 +37,7 @@ services:
     container_name: d-server-one
     restart: always
     ports:
-      - '9090:9090'
+      - '8089:8089'
     networks:
       - d_network
     depends_on:
