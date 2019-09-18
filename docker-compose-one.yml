@@ -36,6 +36,8 @@ services:
     build: docker-files/docker_one
     container_name: d-server-one
     restart: always
+    volumes:
+      - d_vol:/app/capturas
     ports:
       - '8089:8089'
     networks:
