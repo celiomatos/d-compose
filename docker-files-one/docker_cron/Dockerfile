@@ -26,6 +26,6 @@ RUN set -x \
   && rm -rf /usr/include \
   && rm -rf /var/cache/apk/* /root/.node-gyp /usr/share/man /tmp/* \
   && echo "5       *       *       *       *       cd /app && node alert.js" >> /var/spool/cron/crontabs/root \
-  && echo "5       16      *       *       *       cd /app && node sefaz.js" >> /var/spool/cron/crontabs/root
+  && echo "30      16      *       *       *       cd /app && node sefaz.js" >> /var/spool/cron/crontabs/root
 ENTRYPOINT ["/usr/bin/dumb-init"]
 CMD crond -l 2 -f

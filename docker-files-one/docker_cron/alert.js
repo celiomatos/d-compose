@@ -33,7 +33,8 @@ async function run() {
           noticia.includes("google.com") ||
           noticia.includes("youtube.com") ||
           noticia.includes("webcache.googleusercontent.com") ||
-          noticia.includes("www.portaldogeneroso")
+          noticia.includes("www.portaldogeneroso") ||
+		  noticia.includes("https://d24am.com")
         )
       ) {
         await page.goto(noticia);
