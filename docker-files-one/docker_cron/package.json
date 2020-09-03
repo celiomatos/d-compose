@@ -10,6 +10,6 @@
   "license": "ISC",
   "dependencies": {
     "moment-timezone": "0.5.25",
-    "puppeteer": "0.13.0"
+    "puppeteer": "5.2.1"
   }
 }
